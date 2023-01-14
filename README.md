@@ -1,5 +1,38 @@
 
 
+
+
+
+
+
+
+
+if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+
+if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
+    repeat wait()
+        if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
+            if _G.Team == "Pirate" then
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
+                    v.Function()
+                end
+            elseif _G.Team == "Marine" then
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
+                    v.Function()
+                end
+            else
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
+                    v.Function()
+                end
+            end
+        end
+    until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
+end
+wait(3)
+
+
+
+
 request = http_request or request or HttpPost or syn.request
 
 Sword_List = {}
@@ -147,9 +180,15 @@ local Send = function()
    BuyGod = tonumber(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman",true))
    
    
+   if game.PlaceId == 2753915549 then
+world1 = true
+elseif game.PlaceId == 4442272183 then
+    world2 = true
+elseif game.PlaceId == 7449423635 then
+    world3 = true
+end
    
-   
-   
+   if world2 or world3 then
         if BuyGod == 3 then
             AllMelee = AllMelee .. "  "
        elseif BuyGod == 1 then
@@ -186,6 +225,7 @@ local Send = function()
        elseif BuyGod == 1 then
             AllMelee = AllMelee .. "Godhuman , "
        end
+      end
       
    
    
