@@ -213,8 +213,10 @@ local Send = function()
 
 end
 if _G.Natzu then
+while wait() do
 repeat wait(_G.wait)
 
 Send()
 until not _G.Natzu
+   end
 end
