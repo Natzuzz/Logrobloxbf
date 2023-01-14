@@ -7,9 +7,42 @@
 wait(3)
 
 
-for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
+if not game:IsLoaded() then game.Loaded:Wait() end
+repeat wait() until game.Players
+repeat wait() until game.Players.LocalPlayer
+repeat wait() until game.ReplicatedStorage
+repeat wait() until game.ReplicatedStorage:FindFirstChild("Remotes");
+repeat wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui");
+repeat wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main");
+
+wait(1)
+
+
+
+
+if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+
+if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
+    repeat wait()
+        if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
+            if _G.Team == "Pirate" then
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
                     v.Function()
                 end
+            elseif _G.Team == "Marine" then
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
+                    v.Function()
+                end
+            else
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Activated)) do                                                                                                
+                    v.Function()
+                end
+            end
+        end
+    until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
+end
+
+task.wait()
 wait(3)
 
 
