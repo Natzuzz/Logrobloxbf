@@ -1,7 +1,7 @@
 
 
 
-
+repeat wait() until game:IsLoaded() 
 
 
 wait(3)
